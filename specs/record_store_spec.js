@@ -63,6 +63,15 @@ describe("RecordStore", function() {
     assert.equal("Toots and the Maytals", found[0].artist );
   });
 
+  it("should be able to sell record, add money to cash in bank and remve from inventory", function() {
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.addRecord(record3);
+    var sold = store1.sellRecord("Toots and the Maytals");
+    assert.equal(10, store1.cashInBank);
+    assert.equal(2, store1.inventory.length);
+  });
+
 
 });
 

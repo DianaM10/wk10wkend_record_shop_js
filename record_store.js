@@ -22,6 +22,15 @@ RecordStore.prototype = {
       }
     })
   },
+  sellRecord: function(toSell) {
+    var recordToSell = this.findRecordByArtistOrTitle(toSell);
+    this.cashInBank += recordToSell[0].price;
+    var index = this.inventory.indexOf(recordToSell[0]);
+    if (index > -1) {
+      this.inventory.splice(index, 1);
+    }
+      console.log(this.listInventory());
+  }
 
   };
  
