@@ -9,12 +9,14 @@ RecordStore.prototype = {
   addRecord: function(record) {
     this.inventory.push(record);
   },
+
   listInventory: function() {
     var inventory = this.inventory.map(function(record) {
       return record.title +" by " + record.artist + " Price: " + record.price + "\n";
     });
     return inventory.toString();
   },
+
   findRecordByArtistOrTitle: function(toSell) {
     return this.inventory.filter(function(record){
       if((record.artist === toSell) || (record.title === toSell)) {
@@ -22,6 +24,7 @@ RecordStore.prototype = {
       }
     })
   },
+
   sellRecord: function(toSell) {
     var recordToSell = this.findRecordByArtistOrTitle(toSell);
     this.cashInBank += recordToSell[0].price;
@@ -30,6 +33,14 @@ RecordStore.prototype = {
       this.inventory.splice(index, 1);
     }
       console.log(this.listInventory());
+  },
+
+  reportFinance: function() {
+    //display cash in bank and value of inventory
+    var invValue = this.inventory.reduce(function(sum, record) {
+      return sum + record.price;
+    }, 0);
+    return "Cash in Bank for " + this.name + " is: " + this.cashInBank+". The inventory value is: "+invValue;
   }
 
   };

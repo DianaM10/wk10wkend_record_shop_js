@@ -72,6 +72,13 @@ describe("RecordStore", function() {
     assert.equal(2, store1.inventory.length);
   });
 
+  it("should be able to list cash in bank of inventory value", function() {
+    store1.addRecord(record1);
+    store1.addRecord(record2);
+    store1.addRecord(record3);
+    assert.equal("Cash in Bank for Spin City is: 0. The inventory value is: 25", store1.reportFinance());
+  });
+
 
 });
 
